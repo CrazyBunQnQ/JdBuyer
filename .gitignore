@@ -1,0 +1,9 @@
+QRcode.png
+QRcode.jpg
+log/
+cookies/
+config.json
+config.ini
+__pycache__/
+test.py
+testSession.py
