@@ -5,7 +5,7 @@ import pytz
 import win32api
 import ctypes
 import sys
-
+from utils import get_random_useragent
 
 class JDTime(object):
 
@@ -35,22 +35,31 @@ class JDTime(object):
             #                                     __file__, None, 1)
             print("客户端无管理员权限，未更改系统时间")
     def time():
-        '''JD time in local zone'''
-        re = requests.get(
-            url=
-            'https://api.m.jd.com/client.action?functionId=queryMaterialProducts&client=wh5',
-            headers={
-                'User-Agent':
-                'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36'
-            })
-        res = eval(re.text)
-        timeNum = int(res['currentTime2'])
-        timeStamp = float(timeNum) / 1000
-        ret_datetime = datetime.datetime.fromtimestamp(
-            timeStamp)  # .strftime("%Y-%m-%d %H:%M:%S.%f")
-        return ret_datetime
+        '''JD time in local timezone'''
+        try:
+            re = requests.get(
+                url=
+                'https://api.m.jd.com/client.action?functionId=queryMaterialProducts&client=wh5',
+                headers={
+                    'User-Agent':
+                    get_random_useragent()
+                })
+            res = eval(re.text)
+            timeNum = int(res['currentTime2'])
+            timeStamp = float(timeNum) / 1000
+            ret_datetime = datetime.datetime.fromtimestamp(
+                timeStamp)  # .strftime("%Y-%m-%d %H:%M:%S.%f")
+            print("success&re.text:{0}".format(re.text))
+            print("res:{0}".format(res))
+            return ret_datetime
+        except Exception as e:
+            print("error:{0}".format(e))
+            print("re.text:{0}".format(re.text))
+            print("re.status_code:{0}".format(re.status_code))
+            print("res:{0}".format(res))
 
 
 if __name__ == '__main__':
     # JDTime.settime(t=datetime.datetime.now() + datetime.timedelta(minutes=5))
+    print(JDTime.time())
     print(win32api.GetLocalTime())

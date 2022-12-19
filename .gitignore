@@ -7,3 +7,6 @@ config.ini
 __pycache__/
 test.py
 testSession.py
+build/
+JdBuyerApp.spec
+dist/
