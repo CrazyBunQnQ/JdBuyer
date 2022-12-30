@@ -28,7 +28,7 @@
 ## 1 关于项目
 
 欢迎使用京东小猪手，当您在京东上想要购买的商品无货时，小助手可以帮助您全天候监听商品库存，并在有货时第一时间自动尝试下单，且下单成功后支持微信通知触达。
-![项目图片on windows](./assest/shootscreen.windows.png)
+![项目图片on windows](./assets/shootscreen.windows.png)
 <!-- ![原始项目图片on mac](./assest/shootscreen.mac.png) -->
 
 📢**注意**：由于货源有限，监听到货源后并不能保证一定下单成功，只能保证让你和全国黄牛站在同一起跑线上，剩下的交给奇迹。
